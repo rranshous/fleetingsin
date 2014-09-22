@@ -12,6 +12,12 @@ echo "OUTPUT TO: ${out_dir}"
 # copy all files
 cp -r . $out_dir
 
+# remove git files
+rm -rf $out_dir/.git
+
+# remove generater file
+rm -rf $out_dir/generate.sh
+
 # rename service files
 mv $out_dir/domain.com@.service $out_dir/${full_domain}@.service
 mv $out_dir/domain.com-register@.service $out_dir/${full_domain}-register@.service
