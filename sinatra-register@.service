@@ -7,8 +7,8 @@ After=sinatra@%i.service
 EnvironmentFile=/etc/environment
 RemainAfterExit=yes
 ExecStart=/bin/sh -c "/bin/etcdctl set \"/vulcand/upstreams/sinatra/endpoints/sinatra@%i.service\" http://$COREOS_PUBLIC_IPV4:%i; \
-  /bin/etcdctl set \"/vulcand/hosts/example.com/locations/home/path\" '/.*'; \
-  /bin/etcdctl set /vulcand/hosts/example.com/locations/home/upstream sinatra"
+  /bin/etcdctl set \"/vulcand/hosts/musicalwhimsings.info/locations/home/path\" '/.*'; \
+  /bin/etcdctl set /vulcand/hosts/musicalwhimsings.info/locations/home/upstream sinatra"
 ExecStop=/bin/sh -c "/bin/etcdctl rm /vulcand/upstreams/sinatra/endpoints/sinatra@i.service
 
 [X-Fleet]

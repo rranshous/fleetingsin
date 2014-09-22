@@ -7,8 +7,8 @@ TimeoutStartSec=0
 EnvironmentFile=/etc/environment
 ExecStartPre=-/usr/bin/docker kill sinatra-%i
 ExecStartPre=-/usr/bin/docker rm sinatra-%i
-ExecStartPre=/usr/bin/docker pull rranshous/sinatra
-ExecStart=/usr/bin/docker run --name sinatra-%i --rm -p %i:5000 -e PORT=5000 rranshous/sinatra
+ExecStartPre=/usr/bin/docker pull rranshous/fleetingsin:lastest
+ExecStart=/usr/bin/docker run --name sinatra-%i --rm -p %i:5000 -e PORT=5000 rranshous/fleetingsin:lastest
 ExecStop=/usr/bin/docker kill sinatra-%i
 
 [X-Fleet]
