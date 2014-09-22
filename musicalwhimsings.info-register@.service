@@ -1,0 +1,15 @@
+[Unit]
+Description=Register for DOMAIN
+BindsTo=DOMAIN@%i.service
+After=DOMAIN@%i.service
+
+[Service]
+EnvironmentFile=/etc/environment
+RemainAfterExit=yes
+ExecStart=/bin/sh -c "/bin/etcdctl set \"/vulcand/upstreams/DOMAIN/endpoints/DOMAIN@%i.service\" http://$COREOS_PUBLIC_IPV4:%i; \
+  /bin/etcdctl set \"/vulcand/hosts/DOMAIN.COM/locations/home/path\" '/.*'; \
+  /bin/etcdctl set /vulcand/hosts/DOMAIN.COM/locations/home/upstream DOMAIN"
+ExecStop=/bin/sh -c "/bin/etcdctl rm /vulcand/upstreams/DOMAIN/endpoints/DOMAIN@i.service
+
+[X-Fleet]
+X-ConditionMachineOf=DOMAIN.COM@%i.service

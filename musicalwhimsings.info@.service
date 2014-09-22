@@ -1,0 +1,15 @@
+[Unit]
+Description=DOMAIN
+After=docker.service
+
+[Service]
+TimeoutStartSec=0
+EnvironmentFile=/etc/environment
+ExecStartPre=-/usr/bin/docker kill DOMAIN-%i
+ExecStartPre=-/usr/bin/docker rm DOMAIN-%i
+ExecStartPre=/usr/bin/docker pull DOCKER_IMAGE
+ExecStart=/usr/bin/docker run --name DOMAIN-%i --rm -p %i:5000 -e PORT=5000 DOCKER_IMAGE
+ExecStop=/usr/bin/docker kill DOMAIN-%i
+
+[X-Fleet]
+X-Conflicts=DOMAIN@%i.service
